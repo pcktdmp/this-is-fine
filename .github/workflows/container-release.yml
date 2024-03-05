@@ -1,8 +1,13 @@
-on: [push]
-
+on:
+  push:
+    branches:
+      - 'main'
 jobs:
   build-n-release:
     runs-on: ubuntu-latest
     steps:
       - name: Build and push Docker images
         uses: docker/build-push-action@v5.1.0
+        with:
+          push: true
+          tags: pcktdmp/this-is-fine:latest
