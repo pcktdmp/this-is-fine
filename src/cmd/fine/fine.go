@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-var listStr = os.Getenv("THIS_IS_FINE_STDOUT_LOGGING")
+var listStr = os.Getenv("THIS_IS_FINE_LOG_LINES")
 var logItems = strings.Split(listStr, ",")
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -34,7 +34,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	if listStr == "" {
-		log.Fatal("Environment variable THIS_IS_FINE_STDOUT_LOGGING is not set or is empty. Allowed format: THIS_IS_FINE_STDOUT_LOGGING=<LEVEL>:<MESSAGE>,<LEVEL>:<MESSAGE>")
+		log.Fatal("Environment variable THIS_IS_FINE_LOG_LINES is not set or is empty. Allowed format: THIS_IS_FINE_LOG_LINES=<LEVEL>:<MESSAGE>,<LEVEL>:<MESSAGE>")
 	}
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
