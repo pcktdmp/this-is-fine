@@ -17,7 +17,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		for _, logItem := range logItems {
 			logMessages := strings.Split(logItem, ":")
 			if len(logMessages) != 2 {
-				log.Fatal("Please define log level via 'INFO:example-log-message'. Supported levels are: INFO, WARN, ERROR and DEBUG")
+				log.Fatal("Please define each message including a log level: 'INFO:example-log-message'. Supported levels are: INFO, WARN, ERROR and DEBUG")
 			}
 			switch sev := logMessages[0]; sev {
 			case "INFO":
