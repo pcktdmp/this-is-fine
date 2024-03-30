@@ -17,11 +17,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	if processingDelay != "" {
 		// simulate processing of data by introducing a delay
-		processingDelayInt, err := strconv.Atoi(processingDelay)
+		processingDelayInt, err := strconv.ParseInt(processingDelay, 10, 64)
+		processingDelayDuration := time.Duration(processingDelayInt) * time.Second
 		if err != nil {
 			log.Fatal(err)
 		}
-		time.Sleep(time.Duration(processingDelayInt))
+		time.Sleep(processingDelayDuration)
 	}
 
 	if listStr == "" {
