@@ -4,13 +4,26 @@ import (
 	log "github.com/charmbracelet/log"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
+	"time"
 )
 
 var listStr = os.Getenv("THIS_IS_FINE_LOG_LINES")
+var processingDelay = os.Getenv("THIS_IS_FINE_PROCESSING_DELAY")
 var logItems = strings.Split(listStr, ",")
 
 func handler(w http.ResponseWriter, r *http.Request) {
+
+	if processingDelay != "" {
+		// simulate processing of data by introducing a delay
+		processingDelayInt, err := strconv.Atoi(processingDelay)
+		if err != nil {
+			log.Fatal(err)
+		}
+		time.Sleep(time.Duration(processingDelayInt))
+	}
+
 	if listStr == "" {
 		log.Print("I'm fine!")
 	} else {
